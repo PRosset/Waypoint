@@ -3,20 +3,21 @@ var router = express.Router();
 
 var Todo = require('../models/todo');
 
-function authenticate(req, res, next) {
-  if(!req.isAuthenticated()) {
-    res.redirect('/');
-  }
-  else {
-    next();
-  }
-}
-
 function makeError(res, message, status) {
   res.statusCode = status;
   var error = new Error(message);
   error.status = status;
   return error;
+}
+
+function authenticate(req, res, next) {
+  if(!req.isAuthenticated()) {
+    req.flash('error', 'Please signup or login.');
+    res.redirect('/');
+  }
+  else {
+    next();
+  }
 }
 
 // INDEX
