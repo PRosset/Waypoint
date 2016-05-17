@@ -23,7 +23,7 @@ function authenticate(req, res, next) {
 // INDEX
 router.get('/', authenticate, function(req, res, next) {
   // get all the todos and render the index view
-  var todos = global.currentUser.todos;
+  var todos = currentUser.todos;
   res.render('todos/index', { todos: todos, message: req.flash() });
 });
 
