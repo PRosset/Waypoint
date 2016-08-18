@@ -10,35 +10,26 @@
   </header>
 
   <main>
-    <div class="side-nav fixed campView">
-      <% for(var i = 0; i < 20; i++) { %>
-        <div class="test"></div>
-      <% } %>
+    <div class="mapNav">
+      <div class="searchOptions">
+        <a href="/todos/new" class="btn btn-primary">New</a>
+      </div>
+      <div class="side-nav fixed campView">
+        <% todos.forEach(function(todo) { %>
+          <h4 class="test">
+            <form method="POST" action="/todos/<%= todo._id %>?_method=DELETE">
+              <a href="/todos/<%= todo._id %>">
+                <%= todo.title %>
+              </a>
+              <button type="submit" class="btn-floating red">X</button>
+            </form>
+          </h4>
+        <% }) %>
+      </div>
     </div>
     <div class="mapView">
 
     </div>
-    <!-- <div>
-      <h3>TODOs:</h3>
-      <% todos.forEach(function(todo) { %>
-        <h4>
-          <form method="POST" action="/todos/<%= todo._id %>?_method=DELETE">
-            <a href="/todos/<%= todo._id %>">
-              <%= todo.title %>
-            </a>
-            <a href="/todos/<%= todo._id %>/toggle">
-              <% if (todo.completed) { %>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              <% } else { %>
-                <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
-              <% } %>
-            </a>
-            <button type="submit" class="btn btn-xs btn-danger">Delete</button>
-          </form>
-        </h4>
-      <% }) %>
-    </div>
-    <a href="/todos/new" class="btn btn-primary">New</a> -->
   </main>
 </body>
 <% include ../partials/scripts %>

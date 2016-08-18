@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
-var Todo = require('./models/todo');
+var Todo = require('./models/campsite');
+var Campsite = require('./models/campsite')
 
-mongoose.connect('mongodb://localhost/todos');
+mongoose.connect('mongodb://localhost/waypoint');
 
 // our script will not exit until we have disconnected from the db.
 function quit() {
@@ -16,41 +17,23 @@ function handleError(err) {
   return err;
 }
 
-console.log('removing old todos...');
-Todo.remove({})
+console.log('removing old campsites...');
+Campsite.remove({})
 .then(function() {
-  console.log('old todos removed');
-  console.log('creating some new todos...');
-  var groceries  = new Todo({ title: 'groceries',    completed: false });
-  var feedTheCat = new Todo({ title: 'feed the cat', completed: true  });
-  return Todo.create([groceries, feedTheCat]);
+  console.log('old campsites removed');
+  console.log('creating some new campsites...');
+  var redTop    = new Campsite({ title: 'Redtop', state: 'GA', petsAllowed: 'Y', waterfront: 'Y' });
+  var deepHole  = new Campsite({ title: 'Deep Hole', state: 'GA', petsAllowed: 'Y', waterfront: 'Y' });
+  return Campsite.create([redTop, deepHole]);
 })
-.then(function(savedTodos) {
-  console.log('Just saved', savedTodos.length, 'todos.');
-  return Todo.find({});
+.then(function(savedCampsites) {
+  console.log('Just saved', savedCampsites.length, 'campsites.');
+  return Campsite.find({});
 })
-.then(function(allTodos) {
-  console.log('Printing all todos:');
-  allTodos.forEach(function(todo) {
-    console.log(todo);
-  });
-  return Todo.findOne({title: 'groceries'});
-})
-.then(function(groceries) {
-  groceries.completed = true;
-  return groceries.save();
-})
-.then(function(groceries) {
-  console.log('updated groceries:', groceries);
-  return groceries.remove();
-})
-.then(function(deleted) {
-  return Todo.find({});
-})
-.then(function(allTodos) {
-  console.log('Printing all todos:');
-  allTodos.forEach(function(todo) {
-    console.log(todo);
+.then(function(allCampsites) {
+  console.log('Printing all campsites:');
+  allCampsites.forEach(function(campsite) {
+    console.log(campsite);
   });
   quit();
 });

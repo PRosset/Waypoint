@@ -1,16 +1,16 @@
 <nav>
   <div class="navLogo">
+    <% if (currentUser) { %>
+      <a class="navLogo" href="/todos">Waypoint</a>
+    <% } else { %>
       <a class="navLogo" href="/">Waypoint</a>
+    <% } %>
   </div>
   <div class="navLinks">
     <div class="navPages">
       <% if (currentUser) { %>
-        <!-- <a href="/todos">SITES</a> -->
-        <div id="searchBar" class="input-field">
-          <input id="search" type="search" required>
-          <label for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
-        </div>
+        <!-- <a href="/todos">TODOS</a> -->
+        <a href="/campsites">Sites</a>
       <% } %>
     </div>
     <div class="navAccount">

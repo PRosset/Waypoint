@@ -10,32 +10,26 @@
   </header>
 
   <main>
-    <div class="campView">
+    <div class="mapNav">
+      <div class="searchOptions">
+        <a href="/todos/new" class="btn btn-primary">New</a>
+      </div>
+      <div class="side-nav fixed campView">
+        <% campsites.forEach(function(campsite) { %>
+          <h4 class="test">
+            <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
+              <a href="/campsites/<%= campsite._id %>">
+                <%= todo.title %>
+              </a>
+              <button type="submit" class="btn-floating red">X</button>
+            </form>
+          </h4>
+        <% }) %>
+      </div>
     </div>
     <div class="mapView">
 
     </div>
-    <!-- <div>
-      <h3>campsites:</h3>
-      <% campsites.forEach(function(campsite) { %>
-        <h4>
-          <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
-            <a href="/campsites/<%= campsite._id %>">
-              <%= campsite.title %>
-            </a>
-            <a href="/campsites/<%= campsite._id %>/toggle">
-              <% if (campsite.completed) { %>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              <% } else { %>
-                <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
-              <% } %>
-            </a>
-            <button type="submit">Delete</button>
-          </form>
-        </h4>
-      <% }) %>
-    </div>
-    <a href="/campsites/new" class="btn btn-primary">New</a> -->
   </main>
 </body>
 <% include ../partials/scripts %>

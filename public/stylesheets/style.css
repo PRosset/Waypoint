@@ -33,20 +33,14 @@ nav a:hover {
   padding: 16px 15px;
   cursor: pointer;
 }
-.navPages {
+/*.navPages {
   display: flex;
-}
+}*/
 .navLinks {
   padding: 0 10px 0 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-#searchBar {
-  font-size: .6em;
-  height: 80%;
-  align-self: center;
-  border-radius: 25%;
 }
 /* MAIN INDEX SCREEN */
 .indexWrapper {
@@ -92,19 +86,36 @@ nav a:hover {
 /* CAMPSITE MAP */
 .campView {
   position: fixed;
-  height: 100vh;
-  top: 150px;
+  height: 82%;
+  top: 18%;
   width: 300px;
-  background: red;
+  background: #424242;
+  box-shadow: none;
+  z-index: -1;
 }
 .test {
-  height: 150px;
-  width: 300px;
+  height: 100px;
+  width: 275px;
   border: 1px black solid;
-  background-color: yellow;
-  margin: 3px 0;
+  background-color: #757575;
+  margin: 3px 4px;
+  transition: transform .5s, background-color .5s;
+}
+.test:hover {
+  background-color: #616161;
+  transform: scaleY(1.1);
+  transition: transform .5s, background-color .5s;
 }
 .navHeader {
   position: fixed;
   width: 300px;
+}
+.searchOptions {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 300px;
+  height: 9.5%;
+  background-color: #424242;
+  padding: 5px;
 }
