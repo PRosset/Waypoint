@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div class="campView">
+    </div>
+    <div class="mapView">
+
+    </div>
+    <!-- <div>
+      <h3>campsites:</h3>
+      <% campsites.forEach(function(campsite) { %>
+        <h4>
+          <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
+            <a href="/campsites/<%= campsite._id %>">
+              <%= campsite.title %>
+            </a>
+            <a href="/campsites/<%= campsite._id %>/toggle">
+              <% if (campsite.completed) { %>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% } else { %>
+                <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+              <% } %>
+            </a>
+            <button type="submit">Delete</button>
+          </form>
+        </h4>
+      <% }) %>
+    </div>
+    <a href="/campsites/new" class="btn btn-primary">New</a> -->
+  </main>
+</body>
+<% include ../partials/scripts %>
+</html>

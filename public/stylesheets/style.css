@@ -1,12 +1,110 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  font: 14px Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+/* NAV BAR */
+nav {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 60px;
+  background-color: #424242;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
+nav a {
+  color: #fafafa;
+  text-decoration: none;
+  padding: 21px 5px;
+}
+nav a:hover {
+  color: #00e676;
+  border-bottom: 1px #00e676 solid;
+}
+.navLogo {
+  color: #00c853;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.3em;
+  padding: 16px 15px;
+  cursor: pointer;
+}
+.navPages {
+  display: flex;
+}
+.navLinks {
+  padding: 0 10px 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#searchBar {
+  font-size: .6em;
+  height: 80%;
+  align-self: center;
+  border-radius: 25%;
+}
+/* MAIN INDEX SCREEN */
+.indexWrapper {
+  background-image: url("/img/camp3.jpeg");
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+  color: #ecf0f1
+}
+.indexBanner {
+  text-align: center;
+  /*background-color: rgba(236, 240, 241,.6);*/
+  padding: 5px 0 20px 0;
+  margin: 5em;
+  border-radius: 20px;
+}
+.threePoints {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.bullet {
+  margin: 0 10px;
+  background-color: red;
+  width: 120px;
+  height: 120px;
+}
+/* START OF LOGIN AND SIGNUP SCREEN */
 
-.todo-form {
-  max-width: 400px;
+/* FORM STYLE */
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label {
+     color: #00c853;
+}
+.input-field input[type=text]:focus,
+.input-field input[type=password]:focus {
+     border-bottom: 1px solid #00c853;
+     box-shadow: 0 1px 0 0 #00c853;
+}
+/* LOGIN SCREEN */
+/* SIGN UP SCREEN */
+
+/* CAMPSITE MAP */
+.campView {
+  position: fixed;
+  height: 100vh;
+  top: 150px;
+  width: 300px;
+  background: red;
+}
+.test {
+  height: 150px;
+  width: 300px;
+  border: 1px black solid;
+  background-color: yellow;
+  margin: 3px 0;
+}
+.navHeader {
+  position: fixed;
+  width: 300px;
 }

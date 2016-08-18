@@ -4,19 +4,29 @@
   <% include partials/head %>
 </head>
 
-<body class="container-fluid">
-  <header>
-    <% include partials/header %>
-  </header>
+<body>
+  <div class="indexWrapper">
+    <header>
+      <% include partials/header %>
+    </header>
 
-  <main>
-    <div class="jumbotron">
-      <h1>Welcome to our TODOs App</h1>
-  </main>
-
-  <footer>
-    <% include partials/footer %>
-  </footer>
-
+    <main>
+      <div class="indexBanner col s6">
+        <h1>Find your Waypoint</h1>
+        <!-- <div class="threePoints">
+          <div class="bullet">
+            <p>1</p>
+          </div>
+          <div class="bullet">
+            <p>2</p>
+          </div>
+          <div class="bullet">
+            <p>3</p>
+          </div>
+        </div> -->
+      </div>
+    </main>
+  </div>
  </body>
+ <% include partials/scripts %>
 </html>
