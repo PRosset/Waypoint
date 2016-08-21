@@ -15,7 +15,7 @@ router.get('/signup', function(req, res, next) {
 // POST /signup
 router.post('/signup', function(req, res, next) {
   var signUpStrategy = passport.authenticate('local-signup', {
-    successRedirect : '/todos',
+    successRedirect : '/campsites',
     failureRedirect : '/signup',
     failureFlash : true
   });
@@ -31,7 +31,7 @@ router.get('/login', function(req, res, next) {
 // POST /login
 router.post('/login', function(req, res, next) {
   var loginProperty = passport.authenticate('local-login', {
-    successRedirect : '/todos',
+    successRedirect : '/campsites',
     failureRedirect : '/login',
     failureFlash : true
   });

@@ -12,25 +12,53 @@
   <main>
     <div class="mapNav">
       <div class="searchOptions">
-        <a href="/todos/new" class="btn btn-primary">New</a>
+        <a href="/campsites/new" class="btn btn-primary">New</a>
       </div>
       <div class="side-nav fixed campView">
         <% campsites.forEach(function(campsite) { %>
-          <h4 class="test">
-            <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
-              <a href="/campsites/<%= campsite._id %>">
-                <%= todo.title %>
-              </a>
-              <button type="submit" class="btn-floating red">X</button>
-            </form>
-          </h4>
+          <div class="card horizontal">
+            <div class="card-image">
+              <img src="http://lorempixel.com/100/190/nature/10">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
+                  <p><b>
+                   <%= campsite.title %>
+                  </b></p>
+                  <% if (campsite.creator === currentUser.id) { %>
+                  <button type="submit" class="btn-floating red btnDelete">X</button>
+                  <% } %>
+                </form>
+              </div>
+              <div class="card-action">
+                <a href="/campsites/<%= campsite._id %>">Details</a>
+                <span>
+                  <input type="checkbox" id="<%= campsite._id %>"/>
+                  <label for="<%= campsite._id %>">Visited</label>
+                </span>
+              </div>
+            </div>
+          </div>
         <% }) %>
       </div>
-    </div>
-    <div class="mapView">
-
-    </div>
+      <div id="map">
   </main>
 </body>
+<script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 33.7788718, lng: -84.3872202},
+            zoom: 9
+        });
+        map.data.loadGeoJson('/campground.json');
+      }
+
+
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA9RjK1isGo3o1zfyxm--J3RhU3teFl1E&callback=initMap">
+</script>
 <% include ../partials/scripts %>
 </html>

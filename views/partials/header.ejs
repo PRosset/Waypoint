@@ -1,18 +1,12 @@
 <nav>
   <div class="navLogo">
     <% if (currentUser) { %>
-      <a class="navLogo" href="/todos">Waypoint</a>
+      <a class="navLogo" href="/campsites">Waypoint</a>
     <% } else { %>
       <a class="navLogo" href="/">Waypoint</a>
     <% } %>
   </div>
   <div class="navLinks">
-    <div class="navPages">
-      <% if (currentUser) { %>
-        <!-- <a href="/todos">TODOS</a> -->
-        <a href="/campsites">Sites</a>
-      <% } %>
-    </div>
     <div class="navAccount">
       <% if (currentUser) { %>
         <a class="navBtn" href="#"><%= currentUser.local.email %></a>

@@ -11,6 +11,7 @@ var UserSchema = new mongoose.Schema({
     lastName : String,
     email    : { type: String,  required: true },
     password : { type: String,  required: true },
+    // admin: boolean,
   },
   todos :   [ Todo.schema ],
   visited:  [ Campsite.schema ],

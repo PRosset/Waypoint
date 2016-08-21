@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div>
+      <h3>SHOW</h3>
+      <p><b>Title: </b><%= campsite.title %></p>
+      <p><b>Address: </b><%= campsite.address %></p>
+      <p><b>State: </b><%= campsite.state %></p>
+      <p><b>Pets Allowed: </b><%= campsite.petsAllowed %></p>
+      <p><b>Water Front: </b><%= campsite.waterfront %></p>
+      <!-- <p><b>Creator: </b><%= campsite.creator %></p> -->
+    <a href="/campsites" class="btn btn-primary">Back</a>
+    <% if (campsite.creator === currentUser.id) { %>
+    <a href="/campsites/<%= campsite._id %>/edit" class="btn btn-danger">Edit</a>
+    <% } %>
+  </main>
+
+</body>
+<% include ../partials/scripts %>
+</html>

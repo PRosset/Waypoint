@@ -10,13 +10,15 @@
   </header>
 
   <main>
-    <h3>NEW CAMPSITE</h3>
-    <form class="campsite-form" action="/campsites" method="post">
+    <h3>EDIT</h3>
+
+    <form class="campsite-form" action="/campsites/<%= campsite._id %>?_method=PUT" method="post">
       <% include _form %>
-      <a href="/campsites" class="btn btn-primary">Back</a>
+      <a href="/campsites/<%= campsite._id %>" class="btn btn-primary">Back</a>
       <button type="submit" class="btn btn-success">Save</button>
     </form>
   </main>
+
 </body>
 <% include ../partials/scripts %>
 </html>

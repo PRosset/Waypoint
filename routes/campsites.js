@@ -25,97 +25,119 @@ function authenticate(req, res, next) {
 router.get('/', authenticate, function(req, res, next) {
   // get all the todos and render the index view
     Campsite.find({}).sort('-createdAt')
-  .then(function(todos) {
-    res.render('todos/index', { todos: todos } );
+  .then(function(campsites) {
+    res.render('campsites/index', { campsites: campsites, message: req.flash() } );
   }, function(err) {
     return next(err);
   });
-
-  // var campsites = currentUser.campsites;
-  // res.render('campsites/index', { campsites: campsites, message: req.flash() });
 });
 
-// NEW
+// // NEW
 router.get('/new', authenticate, function(req, res, next) {
+
   var campsite = {
     title: '',
-    completed: false
+    address: '',
+    state: '',
+    petsAllowed: false,
+    waterfront: false
   };
-  res.render('todos/new', { todo: todo, message: req.flash() });
+  res.render('campsites/new', { campsite: campsite, message: req.flash() });
 });
 
-// SHOW
+// // SHOW
 router.get('/:id', authenticate, function(req, res, next) {
-  var todo = currentUser.todos.id(req.params.id);
-  if (!todo) return next(makeError(res, 'Document not found', 404));
-  res.render('todos/show', { todo: todo, message: req.flash() } );
+    Campsite.findById(req.params.id)
+  .then(function(campsite) {
+    if (!campsite) return next(makeError(res, 'Document not found', 404));
+    res.render('campsites/show', { campsite: campsite });
+  }, function(err) {
+    return next(err);
+  });
 });
 
 // CREATE
 router.post('/', authenticate, function(req, res, next) {
-  var todo = {
+  var campsite = new Campsite({
     title: req.body.title,
-    completed: req.body.completed ? true : false
-  };
-  // Since a user's todos are an embedded document, we just need to push a new
-  // TODO to the user's list of todos and save the user.
-  currentUser.todos.push(todo);
-  currentUser.save()
-  .then(function() {
-    res.redirect('/todos');
-  }, function(err) {
-    return next(err);
+    address: req.body.address,
+    state: req.body.state,
+    petsAllowed: req.body.petsAllowed,
+    waterfront: req.body.waterfront,
+    creator: currentUser.id
   });
+  campsite.save()
+  .then(function(saved) {
+    res.redirect('/campsites');
+  }, function(err) {
+  return next(err);
+  })
 });
 
 // EDIT
 router.get('/:id/edit', authenticate, function(req, res, next) {
-  var todo = currentUser.todos.id(req.params.id);
-  if (!todo) return next(makeError(res, 'Document not found', 404));
-  res.render('todos/edit', { todo: todo, message: req.flash() } );
+  Campsite.findById(req.params.id)
+  .then(function(campsite) {
+    if (!campsite) return next(makeError(res, 'Document not found', 404));
+    res.render('campsites/edit', { campsite: campsite, message: req.flash() });
+  }, function(err) {
+    return next(err);
+  });
 });
 
-// UPDATE
+// // UPDATE
 router.put('/:id', authenticate, function(req, res, next) {
-  var todo = currentUser.todos.id(req.params.id);
-  if (!todo) return next(makeError(res, 'Document not found', 404));
-  else {
-    todo.title = req.body.title;
-    todo.completed = req.body.completed ? true : false;
-    currentUser.save()
-    .then(function(saved) {
-      res.redirect('/todos');
-    }, function(err) {
-      return next(err);
-    });
-  }
-});
-
-// DESTROY
-router.delete('/:id', authenticate, function(req, res, next) {
-  var todo = currentUser.todos.id(req.params.id);
-  if (!todo) return next(makeError(res, 'Document not found', 404));
-  var index = currentUser.todos.indexOf(todo);
-  currentUser.todos.splice(index, 1);
-  currentUser.save()
+  Campsite.findById(req.params.id)
+  .then(function(campsite) {
+    if (!campsite) return next(makeError(res, 'Document not found', 404));
+    campsite.title = req.body.title,
+    campsite.address = req.body.address,
+    campsite.state = req.body.state,
+    campsite.petsAllowed = req.body.petsAllowed,
+    campsite.waterfront = req.body.waterfront
+    return campsite.save();
+  })
   .then(function(saved) {
-    res.redirect('/todos');
+    res.redirect('/campsites');
   }, function(err) {
     return next(err);
   });
 });
 
-// TOGGLE completed
+// // DESTROY
+router.delete('/:id', function(req, res, next) {
+  Campsite.findById(req.params.id)
+  .then(function(campsite) {
+    if (!campsite) {
+      // TODO: return 404
+    }
+    else if (campsite.creator !== currentUser.id) {
+      console.log("You don't own this")
+      // TODO: return an error back to browser
+    }
+    else {
+      campsite.remove()
+      .then(function(product) {
+        res.redirect('/campsites');
+      });
+    }
+  }, function(err) {
+    return next(err);
+  });
+});
+
+// // TOGGLE completed
 router.get('/:id/toggle', authenticate, function(req, res, next) {
-  var todo = currentUser.todos.id(req.params.id);
-  if (!todo) return next(makeError(res, 'Document not found', 404));
-  todo.completed = !todo.completed;
-  currentUser.save()
-  .then(function(saved) {
-    res.redirect('/todos');
-  }, function(err) {
-    return next(err);
-  });
+
+  // var todo = currentUser.todos.id(req.params.id);
+  // if (!todo) return next(makeError(res, 'Document not found', 404));
+  // todo.completed = !todo.completed;
+  // currentUser.save()
+  // .then(function(saved) {
+  //   res.redirect('/todos');
+  // }, function(err) {
+  //   return next(err);
+  // });
 });
 
 module.exports = router;

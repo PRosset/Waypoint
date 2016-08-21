@@ -8,6 +8,7 @@ body {
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100vw;
   height: 60px;
   background-color: #424242;
@@ -32,15 +33,6 @@ nav a:hover {
   font-size: 1.3em;
   padding: 16px 15px;
   cursor: pointer;
-}
-/*.navPages {
-  display: flex;
-}*/
-.navLinks {
-  padding: 0 10px 0 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 /* MAIN INDEX SCREEN */
 .indexWrapper {
@@ -91,7 +83,6 @@ nav a:hover {
   width: 300px;
   background: #424242;
   box-shadow: none;
-  z-index: -1;
 }
 .test {
   height: 100px;
@@ -99,12 +90,11 @@ nav a:hover {
   border: 1px black solid;
   background-color: #757575;
   margin: 3px 4px;
-  transition: transform .5s, background-color .5s;
+  transition: background-color .5s;
 }
 .test:hover {
   background-color: #616161;
-  transform: scaleY(1.1);
-  transition: transform .5s, background-color .5s;
+  transition: background-color .5s;
 }
 .navHeader {
   position: fixed;
@@ -112,10 +102,34 @@ nav a:hover {
 }
 .searchOptions {
   position: fixed;
-  top: 60px;
+  top: 55px;
   left: 0;
   width: 300px;
   height: 9.5%;
   background-color: #424242;
   padding: 5px;
+}
+.formWrapper {
+  margin: 0 auto;
+  width: 600px;
+}
+.card.horizontal {
+  transform: scale(.9);
+  margin: 5px 0;
+}
+.btnDelete {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  transform: scale(.7);
+}
+.card-action {
+  margin: 0;
+  padding: 0;
+}
+#map {
+  margin-left: 300px;
+  width: 76.55%;
+  height: 560px;
+  background-color: grey;
 }
