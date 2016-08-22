@@ -36,11 +36,20 @@ router.get('/', authenticate, function(req, res, next) {
 router.get('/new', authenticate, function(req, res, next) {
 
   var campsite = {
-    title: '',
-    address: '',
-    state: '',
-    petsAllowed: false,
-    waterfront: false
+    properties: {
+      title: '',
+      url: '',
+      description: '',
+      address: {
+        city: '',
+        state: '',
+        streetAddress: '',
+        zip: '',
+      },
+      petsAllowed: false,
+      waterFront: false,
+      driveway: false
+    }
   };
   res.render('campsites/new', { campsite: campsite, message: req.flash() });
 });
@@ -59,12 +68,28 @@ router.get('/:id', authenticate, function(req, res, next) {
 // CREATE
 router.post('/', authenticate, function(req, res, next) {
   var campsite = new Campsite({
-    title: req.body.title,
-    address: req.body.address,
-    state: req.body.state,
-    petsAllowed: req.body.petsAllowed,
-    waterfront: req.body.waterfront,
-    creator: currentUser.id
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [ -84.3872202, 33.7788718 ]
+    },
+    properties: {
+      contractID: "USER",
+      facilityID: '1',
+      title: req.body.campTitle,
+      url: req.body.url,
+      description: req.body.description,
+      address: {
+        city: req.body.city,
+        state: req.body.state,
+        streetAddress: req.body.streetAddress,
+        zip: req.body.zip,
+      },
+      petsAllowed: req.body.petsAllowed,
+      waterFront: req.body.waterFront,
+      driveway: req.body.driveway,
+      creator: currentUser.id
+    }
   });
   campsite.save()
   .then(function(saved) {
@@ -90,11 +115,16 @@ router.put('/:id', authenticate, function(req, res, next) {
   Campsite.findById(req.params.id)
   .then(function(campsite) {
     if (!campsite) return next(makeError(res, 'Document not found', 404));
-    campsite.title = req.body.title,
-    campsite.address = req.body.address,
-    campsite.state = req.body.state,
-    campsite.petsAllowed = req.body.petsAllowed,
-    campsite.waterfront = req.body.waterfront
+    campsite.properties.title = req.body.campTitle,
+    campsite.properties.url = req.body.url,
+    campsite.properties.description = req.body.description,
+    campsite.properties.address.city = req.body.city,
+    campsite.properties.address.state = req.body.state,
+    campsite.properties.address.streetAddress = req.body.streetAddress,
+    campsite.properties.address.zip = req.body.zip
+    campsite.properties.petsAllowed = req.body.petsAllowed,
+    campsite.properties.waterfront = req.body.waterfront,
+    campsite.properties.driveway = req.body.driveway
     return campsite.save();
   })
   .then(function(saved) {
@@ -108,12 +138,10 @@ router.put('/:id', authenticate, function(req, res, next) {
 router.delete('/:id', function(req, res, next) {
   Campsite.findById(req.params.id)
   .then(function(campsite) {
-    if (!campsite) {
-      // TODO: return 404
-    }
-    else if (campsite.creator !== currentUser.id) {
+    if (!campsite) return next(makeError(res, 'Document not found', 404));
+    else if (campsite.properties.creator !== currentUser.id) {
       console.log("You don't own this")
-      // TODO: return an error back to browser
+      return next(makeError(res, 'Document not found', 404));
     }
     else {
       campsite.remove()
@@ -128,16 +156,34 @@ router.delete('/:id', function(req, res, next) {
 
 // // TOGGLE completed
 router.get('/:id/toggle', authenticate, function(req, res, next) {
+  var campsite = campsites.id(req.params.id);
+  console.log(campsite);
+  var which = currentUser.visited.indexOf(campsite);
+  if(which >= 0)
+  {
+    console.log("removed site from visited");
+    currentUser.visited.splice(which, 1);
+  }else{
+    console.log("added site from visited");
+    currentUser.visited.push(campsite);
+  }
+  currentUser.save()
+  .then(function(saved) {
+    res.redirect('/campsites');
+  }, function(err) {
+    return next(err);
+  });
+});
 
-  // var todo = currentUser.todos.id(req.params.id);
+module.exports = router;
+
+
+// var todo = currentUser.todos.id(req.params.id);
   // if (!todo) return next(makeError(res, 'Document not found', 404));
   // todo.completed = !todo.completed;
   // currentUser.save()
   // .then(function(saved) {
-  //   res.redirect('/todos');
+  //   res.redirect('/campsites');
   // }, function(err) {
   //   return next(err);
   // });
-});
-
-module.exports = router;

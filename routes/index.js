@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+var Campsite = require('../models/campsite');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', message: req.flash() });  // add the message
@@ -54,5 +56,21 @@ router.get('/secret', function(req, res, next) {
     res.redirect('/');
   }
 });
+
+router.get('/data', function(req, res, next) {
+  var geoJson = {
+    "type": "FeatureCollection",
+    "features": []
+  };
+
+  Campsite.find({}, function(err, data){
+    data.forEach(function(campsite) {
+      geoJson.features.push(campsite);
+    });
+
+    res.json(geoJson);
+  });
+});
+
 
 module.exports = router;

@@ -16,17 +16,14 @@
       </div>
       <div class="side-nav fixed campView">
         <% campsites.forEach(function(campsite) { %>
-          <div class="card horizontal">
-            <div class="card-image">
-              <img src="http://lorempixel.com/100/190/nature/10">
-            </div>
+          <div id="<%= campsite.properties.facilityID %>" class="card horizontal scrollspy">
             <div class="card-stacked">
               <div class="card-content">
                 <form method="POST" action="/campsites/<%= campsite._id %>?_method=DELETE">
                   <p><b>
-                   <%= campsite.title %>
+                   <%= campsite.properties.title %>
                   </b></p>
-                  <% if (campsite.creator === currentUser.id) { %>
+                  <% if (campsite.properties.creator === currentUser.id) { %>
                   <button type="submit" class="btn-floating red btnDelete">X</button>
                   <% } %>
                 </form>
@@ -34,8 +31,15 @@
               <div class="card-action">
                 <a href="/campsites/<%= campsite._id %>">Details</a>
                 <span>
-                  <input type="checkbox" id="<%= campsite._id %>"/>
-                  <label for="<%= campsite._id %>">Visited</label>
+                  <!-- <a href="/<%= campsite._id %>/toggle"> -->
+                    <!-- <% if (currentUser.visited.indexOf(campsite._id)) { %>
+                      <input type="checkbox" id="<%= campsite._id %>" checked/>
+                      <label for="<%= campsite._id %>">Visited</label>
+                    <% } else { %> -->
+                      <input type="checkbox" id="<%= campsite._id %>"/>
+                      <label for="<%= campsite._id %>">Visited</label>
+                    <!-- <% } %>
+                  </a> -->
                 </span>
               </div>
             </div>
@@ -46,17 +50,42 @@
   </main>
 </body>
 <script>
-      function initMap() {
-        var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
-            center: {lat: 33.7788718, lng: -84.3872202},
-            zoom: 9
-        });
-        map.data.loadGeoJson('/campground.json');
-      }
+ function initMap() {
+  var mapDiv = document.getElementById('map');
+  var map = new google.maps.Map(mapDiv, {
+      center: {lat: 33.7788718, lng: -84.3872202},
+      zoom: 9,
+    });
+  map.data.loadGeoJson('http://localhost:3000/data');
+  // Set the global styles.
+  map.data.setStyle(function(feature) {
+    var campName = feature.getProperty('properties.title');
+    return {
+    // icon:'http://localhost:3000/public/img/waypoint.png',
+    icon: 'http://i.imgur.com/eWVrVLf.png',
+    visible: true,
+    clickable: true,
+    title: campName
+    };
+  });
 
+  map.data.addListener('mouseover', function(event) {
+    map.data.overrideStyle(event.feature, { icon: 'http://i.imgur.com/xW2U36C.png' });
+  })
 
+  map.data.addListener('mouseout', function(event) {
+    map.data.revertStyle();
+  });
+
+  map.data.addListener('click', function(event) {
+    $('#' + event.feature.getProperty('facilityID')).addClass('test');
+    setTimeout(function(){
+      $('#' + event.feature.getProperty('facilityID')).removeClass('test');
+    }, 700);
+  });
+}
 </script>
+<!-- <script src="../map"></script> -->
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA9RjK1isGo3o1zfyxm--J3RhU3teFl1E&callback=initMap">
 </script>

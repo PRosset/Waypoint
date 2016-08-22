@@ -3,7 +3,7 @@ var bcrypt   = require('bcrypt-nodejs');
 
 var Todo = require('./todo');
 var Campsite = require('./campsite');
-// var Comment = require('./comment');
+var Comment = require('./comment');
 
 var UserSchema = new mongoose.Schema({
   local : {
@@ -14,7 +14,7 @@ var UserSchema = new mongoose.Schema({
     // admin: boolean,
   },
   todos :   [ Todo.schema ],
-  visited:  [ Campsite.schema ],
+  visited:  [ Number ],
   // comments: [ Comment.schema ]
 });
 
