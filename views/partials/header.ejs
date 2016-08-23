@@ -1,5 +1,5 @@
-<nav>
-  <div class="navLogo brand-logo center"">
+<div class="myNav">
+  <div class="navLogo">
     <% if (currentUser) { %>
       <a class="navLogo" href="/campsites">Waypoint</a>
     <% } else { %>
@@ -17,7 +17,7 @@
       <% } %>
     </div>
   </div>
-</nav>
+</div>
 
 <div class="flash">
   <% if (typeof message !== 'undefined') { %>

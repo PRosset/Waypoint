@@ -4,7 +4,7 @@ function initMap() {
       center: {lat: 33.7788718, lng: -84.3872202},
       zoom: 9,
     });
-  map.data.loadGeoJson('http://localhost:3000/data');
+  map.data.loadGeoJson('http://localhost:3000/data', options?: $('#' + '/:id'));
   // Set the global styles.
   map.data.setStyle(function(feature) {
     var campName = feature.getProperty('properties.title');
@@ -26,17 +26,12 @@ function initMap() {
   });
 
   map.data.addListener('click', function(event) {
-    let targetSite = "#" + event.feature.getProperty('facilityID');
-    console.log("My Target: " + targetSite);
-    console.log($(targetSite).offset().top);
-    $('.campView').animate({
-      scrollTop: $(targetSite).offset().top - 200
-    });
-    // $('.campView').scrollTop($(targetSite).offset().top).scrollTop()
+    console.log('#' + event.feature.getProperty('facilityID'));
+    $('.mapNav').scrollspy( { target : '#' + event.feature.getProperty('facilityID') } );
     $('#' + event.feature.getProperty('facilityID')).addClass('highlightCamp');
     setTimeout(function(){
       $('#' + event.feature.getProperty('facilityID')).removeClass('highlightCamp');
-    }, 3000);
+    }, 700);
   });
 }
 

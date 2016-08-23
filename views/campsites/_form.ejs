@@ -8,11 +8,10 @@
       <input type="text" class="form-control" name="url" value="<%= campsite.properties.url %>">
       <label for="title">Website</label>
     </div>
-    <div class="input-field">
-          <textarea type="text" name="description" class="materialize-textarea" value="<%= campsite.properties.description %>"></textarea>
-          <label for="description">Description</label>
+    <div class="input-field myTextarea">
+      <label for="comment">Description</label>
+      <textarea type="text" class="form-control" rows="5" name="description" value="<%= campsite.properties.description %>"></textarea>
     </div>
-
     <div class="input-field">
       <input type="text" class="form-control" name="city" value="<%= campsite.properties.address.city %>">
       <label for="city">City</label>

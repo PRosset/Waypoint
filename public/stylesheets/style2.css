@@ -1,0 +1,282 @@
+body {
+  font: 14px Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+/* NAV */
+.myNav {
+  width: 100%;
+  height: 60px;
+  background-color: #424242;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.48);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.48);
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.48);
+}
+.myNav a {
+  text-decoration: none;
+}
+.myNav a:hover {
+  color: #00e676;
+  border-bottom: 4px #00e676 solid;
+}
+.navLogo {
+  text-align: center;
+  color: #00c853;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: 8px 5px;
+  margin-left: 16px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.navBtn {
+  font-weight: 600;
+  color: #fafafa;
+  padding: 18px 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* INDEX */
+.indexWrapper {
+  margin: 0;
+  background-image: url("/img/camp3.jpeg");
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: #00c853;
+  background-size: 100%;
+  color: #ecf0f1;
+}
+.indexBanner {
+  display: flex;
+  margin-top: 220px;
+  justify-content: center;
+}
+.indexBanner h1 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 4em;
+}
+/* LOGIN SCREEN & SIGN UP SCREEN*/
+.loginWrapper {
+  margin: 0;
+  background-image: url("/img/camp2.jpeg");
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-color: #00c853;
+  background-size: 100%;
+  color: #ecf0f1;
+}
+.signupWrapper {
+  margin: 0;
+  background-image: url("/img/campfire.jpeg");
+  background-color: #00c853;
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  color: #ecf0f1;
+}
+.loginBox {
+  margin: 100px auto;
+  text-align: center;
+  background-color: rgba(66, 66, 66, .94);
+  width: 300px;
+  border-radius: 15px;
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.35);
+  box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.35);
+}
+.loginBox h1 {
+  font-weight: 600;
+  color: #00c853;
+  padding-top: 12px;
+  margin: 0;
+}
+.loginBox form {
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+.loginBox .input-field {
+  margin: 0;
+  padding: 10px;
+}
+.loginBox .btn {
+  padding: 10px;
+  margin: 10px;
+  background-color: #00c853;
+  transition: background-color .5s;
+}
+.loginBox .btn:hover {
+  color: #fafafa;
+  background-color: #00e676;
+  transition: background-color .5s;
+}
+.loginBox input {
+  padding: 5px;
+}
+.loginBox input[type=password],
+.loginBox input[type=text] {
+  color: #212121;
+  border: 2px #ccc solid;
+  transition: .5s;
+  outline: none;
+}
+
+.loginBox input[type=password]:focus,
+.loginBox input[type=text]:focus {
+  border: 2px #00c853 solid;
+  transition: .5s;
+}
+.mapNav {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 260px;
+  height: 100vh - 60px;
+  background-color: #424242;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.48);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.48);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.48);
+}
+.searchOptions {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detailControls {
+  height: 60px;
+  display: flex;
+  padding-left: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.searchOptions .input-group {
+  transform: scale(.9);
+}
+#searchField {
+  width: 150px;
+}
+.campView {
+  overflow-y: scroll;
+  height: 430px;
+}
+::-webkit-scrollbar {
+      width: 5px;
+}
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 200, 83, .6);
+      border-radius: 5px;
+} /* this will style the thumb, ignoring the track */
+.card {
+  margin: 8px auto;
+  width: 240px;
+  height: 90px;
+  background: #ffffff;
+  padding: 5px;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  transition: .5s;
+}
+.card hr {
+  margin: 5px;
+}
+.card p {
+  display: inline;
+}
+.card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 5px;
+}
+.visitCheck {
+  color: #424242;
+  transition: .25s;
+}
+.visitCheck:hover {
+  text-decoration: none;
+  color: #00e676;
+  transition: .25s;
+}
+.btnDelete {
+  position: relative;
+  top: 0;
+  right: 2px;
+  transform: scale(.7);
+  background: #c62828;
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  transition: .5s;
+}
+.btnDelete:hover {
+  transform: scale(.8);
+  background: #d50000;
+  transition: .5s;
+}
+.detailView {
+  margin: 0 auto;
+  width: 240px;
+  background: #ffffff;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  transition: .5s;
+  height: 400px;
+}
+.detailView h3 {
+  margin: 10px 0;
+}
+.highlightCamp {
+  transform: scale(1.02);
+  background: #ccc;
+  transition: .5s;
+}
+.mapPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #424242;
+  margin: 0;
+}
+.bottomMapNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: #424242;
+  margin: 0;
+}
+.test {
+  transform: scale(.8);
+  margin-bottom: 10px;
+}
+#map {
+  margin-left: 260px;
+  width: 100vw - 300px;
+  height: 560px;
+}
+.myTextarea {
+  resize: none;
+  overflow-y: scroll;
+}
+.emptySpace {
+  height: 300px;
+}

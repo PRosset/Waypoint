@@ -12,8 +12,9 @@ UserSchema.add({
     // admin: Boolean,
   },
   // todos :   [ Todo.schema ],
-  visited :  [ Number ],
-  // comments : [ { type : Comment.schema } ]
+  // visited :  [ Campsite.schema ]
+  visited : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Campsite' } ],
+  // comments : [ { type : mongoose.Schema.Types.ObjectId ref: 'User' } ]
 });
 
 UserSchema.methods.encrypt = function(password) {

@@ -30,13 +30,13 @@ var CampsiteSchema = new mongoose.Schema({
       zip: String,
     },
     contact: [
-    {
-      name: String,
-      number: String
-    }
-    ],
-    // comments: [ int ] //add time stamp here dummy
-  },
+      {
+        name: String,
+        number: String
+      }
+    ]
+    // comments: [ Comment.schema ] //add time stamp here dummy
+  }
 });
 
 module.exports = mongoose.model('Campsite', CampsiteSchema);

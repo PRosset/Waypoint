@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
-var User = require('./user');
+// var User = require('./user');
 var Campsite = require('./campsite');
 
 var CommentSchema = new mongoose.Schema({
   // User:    { type: User.schema }, //User.schema,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   // Campsite: { type: Campsite.schema },
   content: String
   },

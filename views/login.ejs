@@ -5,25 +5,29 @@
   </head>
 
   <body>
+    <div class="loginWrapper">
     <header>
       <% include partials/header %>
     </header>
 
     <main>
-      <h2>Login</h2>
-        <form method="post" action="/login">
-            <div class="input-field">
-              <input type="text" name="email" id="email">
-              <label for="email">Email</label>
-            </div>
-            <div class="input-field">
-              <input type="password" name="password" id="password">
-              <label for="email">Password</label>
-            </div>
+      <div class="loginBox">
+      <h1>Login</h1><br/>
+      <form method="post" action="/login">
+          <div class="input-field">
+            <label for="email">Email</label><br/>
+            <input type="text" name="email" id="email">
+          </div>
+          <div class="input-field">
+            <label for="email">Password</label><br/>
+            <input type="password" name="password" id="password">
+          </div>
 
-          <input class="btn green accent-4" type="submit">
-        </form>
+        <input class="btn" type="submit">
+      </form>
+      </div>
     </main>
+    </div>
   </body>
   <% include partials/scripts %>
 </html>

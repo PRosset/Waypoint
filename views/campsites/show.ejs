@@ -4,29 +4,41 @@
   <% include ../partials/head %>
 </head>
 
-<body class="container-fluid">
-  <header>
+<body>
+   <header>
     <% include ../partials/header %>
   </header>
-
   <main>
-    <div>
-      <a href="/campsites" class="btn btn-primary">Back</a>
-      <% if (campsite.properties.creator === currentUser.id) { %>
-      <a href="/campsites/<%= campsite._id %>/edit" class="btn btn-danger">Edit</a>
-      <% } %>
-      <h3><%= campsite.properties.title %></h3>
-      <p><b>ContractType: </b><%= campsite.properties.contractType %>
-      <p><b>Facility ID: </b><%= campsite.properties.facilityID %></p>
-      <p><b>State: </b> <%= campsite.properties.address.state %></p>
-      <p><b>Pets Allowed: </b><%= campsite.properties.petsAllowed %></p>
-      <p><b>Water Front: </b><%= campsite.properties.waterfront %></p>
-      <p><b>Water Hookups: </b><%= campsite.properties.sitesWithWaterHookup %></p>
-      <p><b>Amp Hookups: </b><%= campsite.properties.sitesWithAmps %></p>
-      <p><b>Sewer Hookups: </b><%= campsite.properties.sitesWithSewerHookup %></p>
-      <!-- <p><b>Creator: </b><%= campsite.creator %></p> -->
+    <div class="mapNav">
+      <div class="detailControls">
+        <a href="/campsites" class="btn btn-primary">Back</a>
+        <% if (campsite.properties.creator === currentUser.id) { %>
+        <a href="/campsites/<%= campsite._id %>/edit" class="btn btn-danger">Edit</a>
+        <% } %>
+      </div>
+      <div class="campView">
+        <div id="<%= campsite.properties.facilityID %>" class="detailView">
+          <h3><b><%= campsite.properties.title %></b></h3>
+          <hr>
+          <p><b>ContractType: </b><%= campsite.properties.contractType %>
+          <p><b>Facility ID: </b><%= campsite.properties.facilityID %></p>
+          <p><b>State: </b> <%= campsite.properties.address.state %></p>
+          <p><b>Pets Allowed: </b><%= campsite.properties.petsAllowed %></p>
+          <p><b>Water Front: </b><%= campsite.properties.waterfront %></p>
+          <p><b>Water Hookups: </b><%= campsite.properties.sitesWithWaterHookup %></p>
+          <p><b>Amp Hookups: </b><%= campsite.properties.sitesWithAmps %></p>
+          <p><b>Sewer Hookups: </b><%= campsite.properties.sitesWithSewerHookup %></p>
+          <!-- <p><b>Creator: </b><%= campsite.creator %></p> -->
+        </div>
+      </div>
+      <div class="bottomMapNav">
+      </div>
+      </div>
+      <div id="map"></div>
   </main>
-
 </body>
+<script src="../javascript/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA9RjK1isGo3o1zfyxm--J3RhU3teFl1E&callback=initMap">
+</script>
 <% include ../partials/scripts %>
 </html>

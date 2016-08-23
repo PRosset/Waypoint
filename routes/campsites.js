@@ -153,32 +153,26 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-// // TOGGLE visited
-function siteVisited(campsiteId) {
-  console.log("i fired");
-  if (currentUser.visited.includes(campsiteId)) {
-    currentUser.visited.splice(campsiteId, 1);
-  } else {
-    currentUser.visited.push(campsiteId);
-  }
-  currentUser.save()
-  .then(function(saved) {
-    res.redirect('/campsites');
-  }, function(err) {
-    return next(err);
-  });
-}
-// router.get('/:id/toggle', authenticate, function(req, res, next) {
-//   var campsite = campsites.id(req.params.id);
-//   console.log(campsite);
+//Search
+// router.post('/search', function(req, res, next) {
+//   var search = req.body.title;
+//   Campsite.find({ title: 'value'}, function(err, data) {
+//       if(err) {
+//          res.send(err.message);
+//       }
+//       else{
+//         res.redirect('/campsties/?title='+data);
+//       }
+//     });
+// });
 
-//   if(currentUser.visited.includes(campsite))
-//   {
-//     console.log("removed site from visited");
-//     currentUser.visited.splice(campsite, 1);
+// // TOGGLE visited
+// function siteVisited(campsiteId) {
+//   console.log("i fired");
+//   if (currentUser.visited.includes(campsiteId)) {
+//     currentUser.visited.splice(campsiteId, 1);
 //   } else {
-//     console.log("added site from visited");
-//     currentUser.visited.push(campsite);
+//     currentUser.visited.push(campsiteId);
 //   }
 //   currentUser.save()
 //   .then(function(saved) {
@@ -186,18 +180,35 @@ function siteVisited(campsiteId) {
 //   }, function(err) {
 //     return next(err);
 //   });
-// });
+// }
+
+router.get('/:id/toggle', authenticate, function(req, res, next) {
+  Campsite.findById(req.params.id)
+  .then(function(campsite) {
+    console.log('campsite:', campsite);
+    if (!campsite) return next(makeError(res, 'Document not found', 404));
+
+    console.log('checking %s for include of %s', currentUser.visited, campsite._id);
+
+    let index = currentUser.visited.indexOf(campsite._id);
+    console.log('index:', index);
+
+    // if (currentUser.visited.includes(campsite._id)) {
+    if (index >= 0) {
+      console.log("removed site from visited");
+      currentUser.visited.pull(campsite._id);
+    } else {
+      console.log("added site %s to visited", campsite);
+      currentUser.visited.push(campsite._id);
+    }
+    console.log('visited:', currentUser.visited);
+    return currentUser.save();
+  })
+  .then(function(saved) {
+    res.redirect('/campsites');
+  }, function(err) {
+    return next(err);
+  });
+});
 
 module.exports = router;
-
-
-// var todo = currentUser.todos.id(req.params.id);
-  // if (!todo) return next(makeError(res, 'Document not found', 404));
-  // todo.completed = !todo.completed;
-  // currentUser.save()
-  // .then(function(saved) {
-  //   res.redirect('/campsites');
-  // }, function(err) {
-  //   return next(err);
-  // });
-
