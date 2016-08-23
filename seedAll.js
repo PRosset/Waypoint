@@ -1611,10 +1611,17 @@ for(var i = 0; i < data.length; i++)
     },
     properties: {
       contractID: data[i]['-contractID'],
+      contractType: data[i]['-contractType'],
       facilityID: data[i]['-facilityID'],
       title: data[i]['-facilityName'],
       petsAllowed: data[i]['-sitesWithPetsAllowed'],
       waterFront: data[i]['-sitesWithWaterfront'] ? data[i]['-sitesWithWaterfront'] : '',
+      sitesWithAmps: data[i]['-sitesWithAmps'],
+      sitesWithSewerHookerup: data[i]['-sitesWithSewerHookup'],
+      sitesWithWaterHookup: data[i]['-sitesWithWaterHookup'],
+      address: {
+        state: data[i]['-state'],
+      }
     }
 
   });

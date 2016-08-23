@@ -11,13 +11,16 @@ var CampsiteSchema = new mongoose.Schema({
   properties: {
     creator: String,
     contractID: String,
+    contractType: String,
     facilityID: String,
     title: String,
-    // state: String,
     url: String,
     description: String,
     petsAllowed: String,
     waterFront: String,
+    sitesWithAmps: String,
+    sitesWithSewerHookup: String,
+    sitesWithWaterHookup: String,
     driveway: String,
     address: {
       city: String,
@@ -32,7 +35,7 @@ var CampsiteSchema = new mongoose.Schema({
       number: String
     }
     ],
-    // comments : [Comment.schema] //add time stamp here dummy
+    // comments: [ int ] //add time stamp here dummy
   },
 });
 

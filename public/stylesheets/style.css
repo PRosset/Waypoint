@@ -10,7 +10,7 @@ body {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100vw;
   height: 60px;
   background-color: #424242;
@@ -26,7 +26,7 @@ nav a {
 }
 nav a:hover {
   color: #00e676;
-  border-bottom: 1px #00e676 solid;
+  border-bottom: 10px #00e676 solid;
 }
 .navLogo {
   color: #00c853;
@@ -82,11 +82,12 @@ nav a:hover {
 /* CAMPSITE MAP */
 .campView {
   position: fixed;
-  height: 82%;
+  height: 75%;
   top: 18%;
   width: 300px;
   background: #424242;
   box-shadow: none;
+  overflow-y: scroll;
 }
 .test {
   background-color: #c0c0c0;
@@ -129,3 +130,11 @@ nav a:hover {
   width: 76.55%;
   height: 560px;
 }
+
+::-webkit-scrollbar {
+      width: 10px;
+}
+::-webkit-scrollbar-thumb {
+      background-color: rgba(33, 33, 33, .3);
+      border-radius: 20%;
+} /* this will style the thumb, ignoring the track */

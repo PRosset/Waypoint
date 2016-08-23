@@ -16,21 +16,15 @@
       <a href="/campsites/<%= campsite._id %>/edit" class="btn btn-danger">Edit</a>
       <% } %>
       <h3><%= campsite.properties.title %></h3>
-      <p><b>City: </b><%= campsite.properties.address.city %>
-      <p><b>Address: </b><%= campsite.properties.address.streetAddress %>, <%= campsite.properties.address.zip %></p>
+      <p><b>ContractType: </b><%= campsite.properties.contractType %>
+      <p><b>Facility ID: </b><%= campsite.properties.facilityID %></p>
       <p><b>State: </b> <%= campsite.properties.address.state %></p>
-      <p><b>Website: </b><a href="<%= campsite.properties.url %>"><%= campsite.properties.title %> Website</a></p>
       <p><b>Pets Allowed: </b><%= campsite.properties.petsAllowed %></p>
       <p><b>Water Front: </b><%= campsite.properties.waterfront %></p>
-      <p><b>Description: </b><%= campsite.properties.description %></p>
+      <p><b>Water Hookups: </b><%= campsite.properties.sitesWithWaterHookup %></p>
+      <p><b>Amp Hookups: </b><%= campsite.properties.sitesWithAmps %></p>
+      <p><b>Sewer Hookups: </b><%= campsite.properties.sitesWithSewerHookup %></p>
       <!-- <p><b>Creator: </b><%= campsite.creator %></p> -->
-      <form class="campsite-form" action="#" method="post">
-        <div class="input-field">
-            <textarea type="text" name="description" class="materialize-textarea" value="<%= campsite.properties.description %>"></textarea>
-            <label for="description">Comment</label>
-            <button type="submit" class="btn btn-success">Post</button>
-        </div>
-      </form>
   </main>
 
 </body>

@@ -3,19 +3,17 @@ var bcrypt   = require('bcrypt-nodejs');
 
 var Todo = require('./todo');
 var Campsite = require('./campsite');
-var Comment = require('./comment');
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema();
+UserSchema.add({
   local : {
-    // firstName: { type: String,  required: true },
-    lastName : String,
     email    : { type: String,  required: true },
     password : { type: String,  required: true },
-    // admin: boolean,
+    // admin: Boolean,
   },
-  todos :   [ Todo.schema ],
-  visited:  [ Number ],
-  // comments: [ Comment.schema ]
+  // todos :   [ Todo.schema ],
+  visited :  [ Number ],
+  // comments : [ { type : Comment.schema } ]
 });
 
 UserSchema.methods.encrypt = function(password) {

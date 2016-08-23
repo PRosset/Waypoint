@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 
 var User = require('./user');
+var Campsite = require('./campsite');
 
 var CommentSchema = new mongoose.Schema({
-  User:    String, //User.schema,
+  // User:    { type: User.schema }, //User.schema,
+  // Campsite: { type: Campsite.schema },
   content: String
   },
   { timestamps: true }  // createdAt, updatedAt

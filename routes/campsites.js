@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var Todo = require('../models/todo');
 var Campsite = require('../models/campsite');
 
 function makeError(res, message, status) {
@@ -75,7 +74,7 @@ router.post('/', authenticate, function(req, res, next) {
     },
     properties: {
       contractID: "USER",
-      facilityID: '1',
+      facilityID: 1,
       title: req.body.campTitle,
       url: req.body.url,
       description: req.body.description,
@@ -154,18 +153,13 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-// // TOGGLE completed
-router.get('/:id/toggle', authenticate, function(req, res, next) {
-  var campsite = campsites.id(req.params.id);
-  console.log(campsite);
-  var which = currentUser.visited.indexOf(campsite);
-  if(which >= 0)
-  {
-    console.log("removed site from visited");
-    currentUser.visited.splice(which, 1);
-  }else{
-    console.log("added site from visited");
-    currentUser.visited.push(campsite);
+// // TOGGLE visited
+function siteVisited(campsiteId) {
+  console.log("i fired");
+  if (currentUser.visited.includes(campsiteId)) {
+    currentUser.visited.splice(campsiteId, 1);
+  } else {
+    currentUser.visited.push(campsiteId);
   }
   currentUser.save()
   .then(function(saved) {
@@ -173,7 +167,26 @@ router.get('/:id/toggle', authenticate, function(req, res, next) {
   }, function(err) {
     return next(err);
   });
-});
+}
+// router.get('/:id/toggle', authenticate, function(req, res, next) {
+//   var campsite = campsites.id(req.params.id);
+//   console.log(campsite);
+
+//   if(currentUser.visited.includes(campsite))
+//   {
+//     console.log("removed site from visited");
+//     currentUser.visited.splice(campsite, 1);
+//   } else {
+//     console.log("added site from visited");
+//     currentUser.visited.push(campsite);
+//   }
+//   currentUser.save()
+//   .then(function(saved) {
+//     res.redirect('/campsites');
+//   }, function(err) {
+//     return next(err);
+//   });
+// });
 
 module.exports = router;
 
@@ -187,3 +200,4 @@ module.exports = router;
   // }, function(err) {
   //   return next(err);
   // });
+

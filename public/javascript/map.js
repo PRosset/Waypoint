@@ -27,10 +27,11 @@ function initMap() {
 
   map.data.addListener('click', function(event) {
     console.log('#' + event.feature.getProperty('facilityID'));
-    $('#' + event.feature.getProperty('facilityID')).scrollSpy();
+    $('.mapNav').scrollspy( { target : '#' + event.feature.getProperty('facilityID') } );
     $('#' + event.feature.getProperty('facilityID')).addClass('test');
     setTimeout(function(){
       $('#' + event.feature.getProperty('facilityID')).removeClass('test');
     }, 700);
   });
 }
+

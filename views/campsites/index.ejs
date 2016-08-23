@@ -14,7 +14,7 @@
       <div class="searchOptions">
         <a href="/campsites/new" class="btn btn-primary">New</a>
       </div>
-      <div class="side-nav fixed campView">
+      <div class="campView">
         <% campsites.forEach(function(campsite) { %>
           <div id="<%= campsite.properties.facilityID %>" class="card horizontal scrollspy">
             <div class="card-stacked">
@@ -31,20 +31,19 @@
               <div class="card-action">
                 <a href="/campsites/<%= campsite._id %>">Details</a>
                 <span>
-                  <!-- <a href="/<%= campsite._id %>/toggle"> -->
-                    <!-- <% if (currentUser.visited.indexOf(campsite._id)) { %>
-                      <input type="checkbox" id="<%= campsite._id %>" checked/>
-                      <label for="<%= campsite._id %>">Visited</label>
-                    <% } else { %> -->
-                      <input type="checkbox" id="<%= campsite._id %>"/>
-                      <label for="<%= campsite._id %>">Visited</label>
-                    <!-- <% } %>
-                  </a> -->
+                  <% if (currentUser.visited.includes(campsite._id)) { %>
+                    <input type="checkbox" onclick="siteVisited(<%= campsite._id %>);" id="<%= campsite._id %>" checked/>
+                  <% } else { %>
+                    <input type="checkbox" onclick="siteVisited(<%= campsite._id %>);" id="<%= campsite._id %>"/>
+                  <% } %>
+                  <label for="<%= campsite._id %>">Visited</label>
                 </span>
               </div>
             </div>
           </div>
         <% }) %>
+      </div>
+      <div class="mapPagination">
       </div>
       <div id="map">
   </main>
