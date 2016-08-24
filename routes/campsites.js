@@ -190,7 +190,7 @@ router.get('/:id/toggle', authenticate, function(req, res, next) {
 
     console.log('checking %s for include of %s', currentUser.visited, campsite._id);
 
-    let index = currentUser.visited.indexOf(campsite._id);
+    var index = currentUser.visited.indexOf(campsite._id);
     console.log('index:', index);
 
     // if (currentUser.visited.includes(campsite._id)) {
