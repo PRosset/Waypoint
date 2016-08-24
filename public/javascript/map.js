@@ -36,7 +36,7 @@ function initMap() {
     $('#' + event.feature.getProperty('facilityID')).addClass('highlightCamp');
     setTimeout(function(){
       $('#' + event.feature.getProperty('facilityID')).removeClass('highlightCamp');
-    }, 1000);
+    }, 1500);
   });
 }
 
