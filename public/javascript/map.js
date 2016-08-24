@@ -4,7 +4,8 @@ function initMap() {
       center: {lat: 33.7788718, lng: -84.3872202},
       zoom: 9,
     });
-  map.data.loadGeoJson('http://localhost:3000/data');
+  map.data.loadGeoJson('https://waypoint-camp.herokuapp.com/data');
+  // map.data.loadGeoJson('http://localhost:3000/data');
   // Set the global styles.
   map.data.setStyle(function(feature) {
     var campName = feature.getProperty('properties.title');
