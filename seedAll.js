@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Todo = require('./models/campsite');
 var Campsite = require('./models/campsite')
 
-
 // Connect to database
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
