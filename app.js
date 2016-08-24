@@ -18,7 +18,20 @@ var campsitesRouter = require('./routes/campsites');
 var app = express();
 
 // Connect to database
-mongoose.connect('mongodb://localhost/waypoint');
+if (process.env.mongodb:"//heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz") {
+  mongoose.connect(process.env.MONGODB_URI);
+}
+else {
+  mongoose.connect('mongodb://localhost/waypoint');
+}
+mongoose.connection.on('error', function(err) {
+  console.error('MongoDB connection error: ' + err);
+  process.exit(-1);
+  }
+);
+mongoose.connection.once('open', function() {
+  console.log("Mongoose has connected to MongoDB!");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

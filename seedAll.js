@@ -2,7 +2,22 @@ var mongoose = require('mongoose');
 var Todo = require('./models/campsite');
 var Campsite = require('./models/campsite')
 
-mongoose.connect('mongodb://localhost/waypoint');
+
+// Connect to database
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.mongodb:"//heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz");
+}
+else {
+  mongoose.connect('mongodb://localhost/waypoint');
+}
+mongoose.connection.on('error', function(err) {
+  console.error('MongoDB connection error: ' + err);
+  process.exit(-1);
+  }
+);
+mongoose.connection.once('open', function() {
+  console.log("Mongoose has connected to MongoDB!");
+});
 
 // our script will not exit until we have disconnected from the db.
 function quit() {
