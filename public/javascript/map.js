@@ -6,9 +6,9 @@ function initMap() {
       zoom: 9,
     });
 
-    // map.data.loadGeoJson('https://waypoint-camp.herokuapp.com/campsites/data');
     var searchOptions = title ? ('?title=' + title) : '';
-    map.data.loadGeoJson('http://localhost:3000/campsites/data' + searchOptions);
+    map.data.loadGeoJson('https://waypoint-camp.herokuapp.com/campsites/data' + searchOptions);
+    // map.data.loadGeoJson('http://localhost:3000/campsites/data' + searchOptions);
     // Set the global styles.
     map.data.setStyle(function(feature) {
     var campName = feature.getProperty('properties.title');

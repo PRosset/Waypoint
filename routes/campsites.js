@@ -33,7 +33,7 @@ function getSearchOptions(req) {
 router.get('/', authenticate, function(req, res, next) {
   // get all the todos and render the index view
   console.log('req.query:' , req.query);
-  let searchOptions = getSearchOptions(req);
+  var searchOptions = getSearchOptions(req);
   Campsite.find(searchOptions).sort('-createdAt')
   .then(function(campsites) {
     res.render('campsites/index', { campsites: campsites,
@@ -50,7 +50,7 @@ router.get('/data', function(req, res, next) {
     "features": []
   };
 
-  let searchOptions = getSearchOptions(req);
+  var searchOptions = getSearchOptions(req);
   console.log('searchOptions:', searchOptions);
   Campsite.find(searchOptions, function(err, data) {
     data.forEach(function(campsite) {
