@@ -30,6 +30,7 @@ function initMap() {
     let targetSite = "#" + event.feature.getProperty('facilityID');
     console.log("My Target: " + targetSite);
     console.log($(targetSite).offset().top);
+    $('.campView').scrollTop(0);
     $('.campView').animate({
       scrollTop: $(targetSite).offset().top - 200
     });
