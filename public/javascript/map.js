@@ -33,7 +33,7 @@ function initMap() {
     $('.campView').scrollTop(0);
     $('.campView').animate({
       scrollTop: $(targetSite).offset().top - 200
-    });
+    }, 2000);
     // $('.campView').scrollTop($(targetSite).offset().top).scrollTop()
     $('#' + event.feature.getProperty('facilityID')).addClass('highlightCamp');
     setTimeout(function(){
