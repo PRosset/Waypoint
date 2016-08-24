@@ -1,38 +1,38 @@
-<div class="formWrapper">
-  <div class="form-group">
-    <div class="input-field">
-      <input type="text" class="form-control" name="campTitle" value="<%= campsite.properties.title %>">
-      <label for="campTitle">Campground name</label>
-    </div>
-    <div class="input-field">
-      <input type="text" class="form-control" name="url" value="<%= campsite.properties.url %>">
-      <label for="title">Website</label>
-    </div>
-    <div class="input-field myTextarea">
-      <label for="comment">Description</label>
-      <textarea type="text" class="form-control" rows="5" name="description" value="<%= campsite.properties.description %>"></textarea>
-    </div>
-    <div class="input-field">
-      <input type="text" class="form-control" name="city" value="<%= campsite.properties.address.city %>">
-      <label for="city">City</label>
-    </div>
-    <div class="input-field">
-      <input type="text" class="form-control" name="state" value="<%= campsite.properties.address.state %>">
-      <label for="state">State</label>
-    </div>
-    <div class="input-field">
-      <input type="text" class="form-control" name="streetAddress" value="<%= campsite.properties.address.streetAddress %>">
-      <label for="streetAddress">Street Address</label>
-    </div>
-    <div class="input-field">
-      <input type="text" class="form-control" name="zip" value="<%= campsite.properties.address.zip %>">
-      <label for="zip">Zip Code</label>
-    </div>
-    <label for="petsAllowed">Pets Allowed</label>
-    <input type="checkbox" class="form-control" for="petsAllowed" <%= campsite.properties.petsAllowed ? 'Y' : 'N' %> >
-    <label for="waterFront">Water Front</label>
-    <input type="checkbox" class="form-control" for="waterFront" <%= campsite.properties.waterfront ? 'Y' : 'N' %> >
-    <label for="driveway">Car Camping</label>
-    <input type="checkbox" class="form-control" name="driveway" <%= campsite.properties.driveway ? 'Y' : 'N' %> >
-  </div>
+<div class="form-group">
+<div class="input-field">
+  <label for="campTitle">Campground name</label>
+  <input type="text" class="form-control" name="campTitle" value="<%= campsite.properties.title %>">
+</div>
+<div class="input-field myTextarea">
+  <label for="comment">Description</label>
+  <textarea type="text" class="form-control" rows="2" name="description" value="<%= campsite.properties.description %>"></textarea>
+</div>
+<div class="input-field">
+  <label for="lng">Longititude</label>
+  <input type="number" step="any" class="form-control" name="lng" value="<%= campsite.geometry.coordinates[0] %>">
+</div>
+<div class="input-field">
+  <label for="lat">Latitude</label>
+  <input type="number" step="any" class="form-control" name="lat" value="<%= campsite.geometry.coordinates[1] %>">
+</div>
+<div class="input-field">
+  <label for="state">State</label>
+  <input type="text" class="form-control" name="state" value="<%= campsite.properties.address.state %>">
+</div>
+<div class="input-field">
+  <label for="streetAddress">Street Address</label>
+  <input type="text" class="form-control" name="streetAddress" value="<%= campsite.properties.address.streetAddress %>">
+</div>
+<div class="input-field">
+  <label for="petsAllowed">Pets Allowed</label>
+  <input type="text" class="form-control" name="petsAllowed" value="<%= campsite.properties.petsAllowed %>">
+</div>
+<div class="input-field">
+  <label for="waterFront">Water Front</label>
+  <input type="text" class="form-control" name="waterFront" value="<%= campsite.properties.waterFront %>">
+</div>
+<div class="input-field">
+  <label for="driveway">Car Camping</label>
+  <input type="text" class="form-control" name="driveway" value="<%= campsite.properties.driveway %>">
+</div>
 </div>

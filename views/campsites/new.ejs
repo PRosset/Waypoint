@@ -8,15 +8,18 @@
   <header>
     <% include ../partials/header %>
   </header>
-
-  <main>
-    <h3>NEW CAMPSITE</h3>
-    <form class="campsite-form" action="/campsites" method="post">
-      <% include _form %>
-      <a href="/campsites" class="btn btn-primary">Back</a>
-    <button type="submit" class="btn btn-success">Save</button>
-    </form>
-  </main>
+  <div class="formPageWrapper">
+    <main>
+      <div class="formWrapper">
+        <h3>NEW CAMPSITE</h3>
+        <form class="campsite-form" action="/campsites" method="post">
+          <% include _form %>
+          <a href="/campsites" class="btn btn-primary">Back</a>
+        <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </main>
+  </div>
 </body>
 <% include ../partials/scripts %>
 </html>

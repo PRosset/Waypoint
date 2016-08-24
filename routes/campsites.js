@@ -65,19 +65,20 @@ router.get('/data', function(req, res, next) {
 router.get('/new', authenticate, function(req, res, next) {
 
   var campsite = {
+    geometry: {
+      type: "Point",
+      coordinates: []
+    },
     properties: {
       title: '',
-      url: '',
       description: '',
       address: {
-        city: '',
         state: '',
         streetAddress: '',
-        zip: '',
       },
-      petsAllowed: false,
-      waterFront: false,
-      driveway: false
+      petsAllowed: '',
+      waterFront: '',
+      driveway: ''
     }
   };
   res.render('campsites/new', { campsite: campsite, message: req.flash() });
@@ -100,19 +101,16 @@ router.post('/', authenticate, function(req, res, next) {
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [ -84.3872202, 33.7788718 ]
+      coordinates: [ req.body.lng, req.body.lat ]
     },
     properties: {
       contractID: "USER",
       facilityID: 1,
       title: req.body.campTitle,
-      url: req.body.url,
       description: req.body.description,
       address: {
-        city: req.body.city,
         state: req.body.state,
         streetAddress: req.body.streetAddress,
-        zip: req.body.zip,
       },
       petsAllowed: req.body.petsAllowed,
       waterFront: req.body.waterFront,
@@ -141,20 +139,23 @@ router.get('/:id/edit', authenticate, function(req, res, next) {
 
 // // UPDATE
 router.put('/:id', authenticate, function(req, res, next) {
+  console.log("lng: ",req.body.lng);
+  console.log("lat: ",req.body.lat);
   Campsite.findById(req.params.id)
   .then(function(campsite) {
     if (!campsite) return next(makeError(res, 'Document not found', 404));
     campsite.properties.title = req.body.campTitle,
-    campsite.properties.url = req.body.url,
-    campsite.properties.description = req.body.description,
-    campsite.properties.address.city = req.body.city,
-    campsite.properties.address.state = req.body.state,
-    campsite.properties.address.streetAddress = req.body.streetAddress,
-    campsite.properties.address.zip = req.body.zip
-    campsite.properties.petsAllowed = req.body.petsAllowed,
-    campsite.properties.waterfront = req.body.waterfront,
-    campsite.properties.driveway = req.body.driveway
-    return campsite.save();
+    campsite.properties.description = req.body.description;
+    campsite.properties.address.state = req.body.state;
+    campsite.properties.address.streetAddress = req.body.streetAddress;
+    campsite.geometry.coordinates[0] = req.body.lng;
+    campsite.geometry.coordinates[1] = req.body.lat;
+    console.log("lng: ",req.body.lng);
+    console.log("lat: ",req.body.lat);
+    campsite.properties.petsAllowed = req.body.petsAllowed;
+    campsite.properties.waterfront = req.body.waterfront;
+    campsite.properties.driveway = req.body.driveway;
+    campsite.save();
   })
   .then(function(saved) {
     res.redirect('/campsites');
