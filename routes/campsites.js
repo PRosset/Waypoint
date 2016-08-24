@@ -20,14 +20,44 @@ function authenticate(req, res, next) {
   }
 }
 
+function getSearchOptions(req) {
+  var searchOptions = {};
+  if (req.query.title) {
+    searchOptions['properties.title'] = { '$regex' : req.query.title, '$options' : 'i' };
+  }
+  console.log(searchOptions);
+  return searchOptions;
+}
+
 // INDEX
 router.get('/', authenticate, function(req, res, next) {
   // get all the todos and render the index view
-    Campsite.find({}).sort('-createdAt')
+  console.log('req.query:' , req.query);
+  let searchOptions = getSearchOptions(req);
+  Campsite.find(searchOptions).sort('-createdAt')
   .then(function(campsites) {
-    res.render('campsites/index', { campsites: campsites, message: req.flash() } );
+    res.render('campsites/index', { campsites: campsites,
+                                    title: req.query.title
+                                  });
   }, function(err) {
     return next(err);
+  });
+});
+
+router.get('/data', function(req, res, next) {
+  var geoJson = {
+    "type": "FeatureCollection",
+    "features": []
+  };
+
+  let searchOptions = getSearchOptions(req);
+  console.log('searchOptions:', searchOptions);
+  Campsite.find(searchOptions, function(err, data) {
+    data.forEach(function(campsite) {
+      geoJson.features.push(campsite);
+    });
+
+    res.json(geoJson);
   });
 });
 

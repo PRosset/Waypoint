@@ -13,11 +13,11 @@
     <div class="mapNav">
       <div class="searchOptions">
         <div class="input-group">
-        <form class="search-form" action="/campsites/search" method="POST">
+        <form class="search-form" action="/campsites/" method="GET">
           <div class="form-group">
           <input id="searchField" type="text" class="form-control" name="title" placeholder="Search for...">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
             <a href="/campsites/new" class="btn btn-success btnNew">New</a>
           </span>
           </div>
@@ -81,6 +81,9 @@
       <div id="map"></div>
   </main>
 </body>
+<script>
+  var title = "<%= title %>";
+</script>
 <script src="/javascript/map.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA9RjK1isGo3o1zfyxm--J3RhU3teFl1E&callback=initMap">
 </script>

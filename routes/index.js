@@ -57,20 +57,4 @@ router.get('/secret', function(req, res, next) {
   }
 });
 
-router.get('/data', function(req, res, next) {
-  var geoJson = {
-    "type": "FeatureCollection",
-    "features": []
-  };
-
-  Campsite.find({}, function(err, data){
-    data.forEach(function(campsite) {
-      geoJson.features.push(campsite);
-    });
-
-    res.json(geoJson);
-  });
-});
-
-
 module.exports = router;
