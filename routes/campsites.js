@@ -153,35 +153,6 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
-//Search
-// router.post('/search', function(req, res, next) {
-//   var search = req.body.title;
-//   Campsite.find({ title: 'value'}, function(err, data) {
-//       if(err) {
-//          res.send(err.message);
-//       }
-//       else{
-//         res.redirect('/campsties/?title='+data);
-//       }
-//     });
-// });
-
-// // TOGGLE visited
-// function siteVisited(campsiteId) {
-//   console.log("i fired");
-//   if (currentUser.visited.includes(campsiteId)) {
-//     currentUser.visited.splice(campsiteId, 1);
-//   } else {
-//     currentUser.visited.push(campsiteId);
-//   }
-//   currentUser.save()
-//   .then(function(saved) {
-//     res.redirect('/campsites');
-//   }, function(err) {
-//     return next(err);
-//   });
-// }
-
 router.get('/:id/toggle', authenticate, function(req, res, next) {
   Campsite.findById(req.params.id)
   .then(function(campsite) {

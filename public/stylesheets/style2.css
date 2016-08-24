@@ -183,12 +183,14 @@ body {
 .card {
   margin: 8px auto;
   width: 240px;
-  height: 90px;
-  background: #ffffff;
+  height: 120px;
+  background: #fafafa;
   padding: 5px;
   -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
   -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
   box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.28);
+  transition: .5s;
+  border: 3px #fafafa solid;
   transition: .5s;
 }
 .card hr {
@@ -199,7 +201,8 @@ body {
 }
 .card-action {
   display: flex;
-  align-items: center;
+  align-content: flex-end;
+  align-items: flex-end;
   justify-content: space-around;
   padding-top: 5px;
 }
@@ -211,6 +214,9 @@ body {
   text-decoration: none;
   color: #00e676;
   transition: .25s;
+}
+.visitCheck:active {
+  text-decoration: none;
 }
 .btnDelete {
   position: relative;
@@ -246,7 +252,8 @@ body {
 }
 .highlightCamp {
   transform: scale(1.02);
-  background: #ccc;
+  border: 3px #00c853 solid;
+  /*background: #ccc;*/
   transition: .5s;
 }
 .mapPagination {
@@ -264,9 +271,12 @@ body {
   background-color: #424242;
   margin: 0;
 }
-.test {
+.paginationSize {
   transform: scale(.8);
   margin-bottom: 10px;
+}
+.pagination a{
+  color: #424242;
 }
 #map {
   margin-left: 260px;

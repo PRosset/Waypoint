@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var Todo = require('./models/campsite');
 var Campsite = require('./models/campsite')
 
 // Connect to database

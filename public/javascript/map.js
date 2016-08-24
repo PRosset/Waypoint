@@ -4,8 +4,9 @@ function initMap() {
       center: {lat: 33.7788718, lng: -84.3872202},
       zoom: 9,
     });
-  map.data.loadGeoJson('https://waypoint-camp.herokuapp.com/data');
-  // map.data.loadGeoJson('http://localhost:3000/data');
+
+    // map.data.loadGeoJson('https://waypoint-camp.herokuapp.com/data');
+    map.data.loadGeoJson('http://localhost:3000/data');
   // Set the global styles.
   map.data.setStyle(function(feature) {
     var campName = feature.getProperty('properties.title');
@@ -28,8 +29,7 @@ function initMap() {
 
   map.data.addListener('click', function(event) {
     let targetSite = "#" + event.feature.getProperty('facilityID');
-    console.log("My Target: " + targetSite);
-    console.log($(targetSite).offset().top);
+
     $('.campView').scrollTop(0);
     $('.campView').animate({
       scrollTop: $(targetSite).offset().top - 200
