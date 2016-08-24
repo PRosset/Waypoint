@@ -18,8 +18,8 @@ var campsitesRouter = require('./routes/campsites');
 var app = express();
 
 // Connect to database
-if (process.env."mongodb://heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz") {
-  mongoose.connect(process.env."mongodb://heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz");
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
 }
 else {
   mongoose.connect('mongodb://localhost/waypoint');
