@@ -2,8 +2,8 @@ function initMap() {
   console.log('title:', JSON.stringify(title));
   var mapDiv = document.getElementById('map');
   var map = new google.maps.Map(mapDiv, {
-      center: {lat: 33.7788718, lng: -84.3872202},
-      zoom: 9,
+      center: {lat: 32.825716, lng: -83.654822},
+      zoom: 7,
     });
 
     var searchOptions = title ? ('?title=' + title) : '';

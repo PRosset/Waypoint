@@ -55,7 +55,7 @@ body {
   background-repeat: no-repeat;
   background-color: #00c853;
   background-size: 100%;
-  color: #ecf0f1;
+  color: #424242;
 }
 .indexBanner {
   display: flex;
@@ -76,7 +76,7 @@ body {
   background-repeat: no-repeat;
   background-color: #00c853;
   background-size: 100%;
-  color: #ecf0f1;
+  color: #424242;
 }
 .signupWrapper {
   margin: 0;
@@ -86,7 +86,7 @@ body {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: 100%;
-  color: #ecf0f1;
+  color: #424242;
 }
 .loginBox {
   margin: 100px auto;
