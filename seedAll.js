@@ -4,7 +4,7 @@ var Campsite = require('./models/campsite')
 
 
 // Connect to database
-if (process.env.MONGODB_URI) {
+if (process.env."mongodb://heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz") {
   mongoose.connect(process.env."mongodb://heroku_rlfmlrjz:irjilj9kk3mi63054mumfkoj7h@ds013966.mlab.com:13966/heroku_rlfmlrjz");
 }
 else {
