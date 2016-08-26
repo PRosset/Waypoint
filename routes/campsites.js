@@ -150,8 +150,9 @@ router.put('/:id', authenticate, function(req, res, next) {
     campsite.properties.address.streetAddress = req.body.streetAddress;
     campsite.geometry.coordinates[0] = req.body.lng;
     campsite.geometry.coordinates[1] = req.body.lat;
-    console.log("lng: ",req.body.lng);
-    console.log("lat: ",req.body.lat);
+    campsite.markModified('geometry.coordinates');
+    // console.log("lng: ",req.body.lng);
+    // console.log("lat: ",req.body.lat);
     campsite.properties.petsAllowed = req.body.petsAllowed;
     campsite.properties.waterfront = req.body.waterfront;
     campsite.properties.driveway = req.body.driveway;

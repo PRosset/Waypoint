@@ -1610,10 +1610,6 @@ Campsite.remove({})
   // var campsites = [new Campsite({}), new Campsite({})]
   var campsites = [];
 
-  data.forEach(function(foo){
-
-  });
-
 for(var i = 0; i < data.length; i++)
 {
   var cs = new Campsite({

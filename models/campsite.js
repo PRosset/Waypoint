@@ -34,8 +34,8 @@ var CampsiteSchema = new mongoose.Schema({
         name: String,
         number: String
       }
-    ]
-    // comments: [ Comment.schema ] //add time stamp here dummy
+    ],
+    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' } ] //add time stamp here dummy
   }
 });
 

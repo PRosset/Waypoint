@@ -1,7 +1,7 @@
 <div class="form-group">
 <div class="input-field">
   <label for="campTitle">Campground name</label>
-  <input type="text" class="form-control" name="campTitle" value="<%= campsite.properties.title %>">
+  <input type="text" class="form-control" name="campTitle" value="<%= campsite.properties.title %>" required="Required">
 </div>
 <div class="input-field myTextarea">
   <label for="comment">Description</label>
@@ -9,11 +9,11 @@
 </div>
 <div class="input-field">
   <label for="lng">Longititude</label>
-  <input type="number" step="any" class="form-control" name="lng" value="<%= campsite.geometry.coordinates[0] %>">
+  <input type="number" step="any" class="form-control" name="lng" value="<%= campsite.geometry.coordinates[0] %>" required="Required">
 </div>
 <div class="input-field">
   <label for="lat">Latitude</label>
-  <input type="number" step="any" class="form-control" name="lat" value="<%= campsite.geometry.coordinates[1] %>">
+  <input type="number" step="any" class="form-control" name="lat" value="<%= campsite.geometry.coordinates[1] %>" required="Required">
 </div>
 <div class="input-field">
   <label for="state">State</label>

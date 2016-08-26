@@ -14,10 +14,10 @@ function initMap() {
     var campName = feature.getProperty('properties.title');
     return {
     // icon:'http://localhost:3000/public/img/waypoint.png',
-    icon: 'http://i.imgur.com/eWVrVLf.png',
-    visible: true,
-    clickable: true,
-    title: campName
+      icon: 'http://i.imgur.com/eWVrVLf.png',
+      visible: true,
+      clickable: true,
+      title: campName
     };
   });
 
