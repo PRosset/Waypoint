@@ -37,13 +37,12 @@ router.get('/', authenticate, function(req, res, next) {
   Campsite.find(searchOptions).sort('-createdAt')
   .then(function(campsites) {
     res.render('campsites/index', { campsites: campsites,
-                                    title: req.query.title
-                                  });
+                                    title: req.query.title });
   }, function(err) {
     return next(err);
   });
 });
-
+// Search
 router.get('/data', function(req, res, next) {
   var geoJson = {
     "type": "FeatureCollection",
