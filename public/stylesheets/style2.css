@@ -171,7 +171,7 @@ body {
 }
 .campView {
   overflow-y: scroll;
-  height: 430px;
+  height: 75vh;
 }
 ::-webkit-scrollbar {
       width: 5px;
@@ -282,7 +282,7 @@ body {
 #map {
   margin-left: 260px;
   width: 100vw - 300px;
-  height: 560px;
+  height: 91.5vh;
 }
 .myTextarea {
   resize: none;
