@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 
-var Todo = require('./todo');
 var Campsite = require('./campsite');
 var Comments
 
@@ -13,7 +12,7 @@ UserSchema.add({
     // admin: Boolean,
   },
   visited : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Campsite' } ],
-  comments : [ { type : mongoose.Schema.Types.ObjectId, ref: 'Comment' } ]
+  // comments : [ { type : mongoose.Schema.Types.ObjectId, ref: 'Comment' } ]
 });
 
 UserSchema.methods.encrypt = function(password) {

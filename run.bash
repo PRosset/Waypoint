@@ -1,2 +1,2 @@
 #!/bin/bash
-DEBUG=todos:* npm start
+DEBUG=waypoint:* npm start

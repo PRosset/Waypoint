@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Comment = require('./comment');
+// var Comment = require('./comment');
 
 var CampsiteSchema = new mongoose.Schema({
   type: String,
@@ -35,7 +35,7 @@ var CampsiteSchema = new mongoose.Schema({
         number: String
       }
     ],
-    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' } ] //add time stamp here dummy
+    // comments: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' } ] //add time stamp here dummy
   }
 });
 
