@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+  width: 100%;
+}
 body {
   font: 14px Helvetica, Arial, sans-serif;
   width: 100%;
@@ -144,7 +148,7 @@ body {
   left: 0;
   top: 60px;
   width: 260px;
-  height: 100vh - 60px;
+  height: calc(100vh - 60px);
   background-color: #424242;
   -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.48);
   -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.48);
@@ -171,7 +175,7 @@ body {
 }
 .campView {
   overflow-y: scroll;
-  height: 75vh;
+  height: 80%;
 }
 ::-webkit-scrollbar {
       width: 5px;
@@ -281,8 +285,8 @@ body {
 }
 #map {
   margin-left: 260px;
-  width: 100vw - 300px;
-  height: 91.5vh;
+  width: calc(100vw - 260px);
+  height: 90vh;
 }
 .myTextarea {
   resize: none;
