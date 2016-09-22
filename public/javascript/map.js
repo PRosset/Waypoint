@@ -14,12 +14,10 @@ function initMap() {
     map.data.setStyle(function(feature) {
 
       //******** YOU ARE SO CLOSE RIGHT HERE ***************
-      // console.log('Feature ID:', map.data.feature);
-      // console.log('Feature: ', feature);
-      // console.log('Feature Property ID:', map.data.feature.getProperty('_id'));
-
+      console.log('Feature: ', feature);
+      // console.log('id:', feature.getProperty(''));
       // console.log('check visisted:',visited.split(',').indexOf(feature.getId()));
-      var campName = feature.getProperty('properties.title');
+      var campName = feature.getProperty('title');
       if (visited.split(',').indexOf(feature.getId()) >= 0) {
         return ({
           icon: '/img/waypoint_4.png',
