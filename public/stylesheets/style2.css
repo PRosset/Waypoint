@@ -58,7 +58,7 @@ body {
   height: 100vh;
   background-repeat: no-repeat;
   background-color: #fafafa;
-  background-size: 100%;
+  background-size: cover;
   color: #ecf0f1;
 }
 .indexBanner {
